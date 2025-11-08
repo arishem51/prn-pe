@@ -11,7 +11,7 @@
         @foreach (var director in Model.Directors)
         {
             <div>
-                <a id="di_@director.Id">
+                <a id="di_@director.Id" href="?directorId=@director.Id">
                     @director.FullName
                 </a>
             </div>
@@ -34,18 +34,25 @@
                 </tr>
             </thead>
             <tbody>
-                @for (int i = 0; i < Model.Movies.Count; i++)
+                @foreach (var movie in Model.Movies)
                 {
-                    var movie = Model.Movies[i];
                     <tr>
-                        <td id="td_title_@i">@movie.Title</td>
-                        <td id="td_releaseDate_@i">@(movie.ReleaseDate?.ToString("MM/dd/yyyy") ?? "")</td>
-                        <td id="td_description_@i">@(movie.Description ?? "")</td>
-                        <td id="td_language_@i">@movie.Language</td>
-                        <td id="td_director_@i">@(movie.Director?.FullName ?? "")</td>
-                        <td id="td_stars_@i">@string.Join(", ", movie.Stars.Select(s => s.FullName))</td>
-                        <td id="td_action_@i">
-                            <a id="btn_delete_@i">
+                        <td id="td_title_@movie.Id">@movie.Title</td>
+                        <td id="td_releaseDate_@movie.Id">@(movie.ReleaseDate?.ToString("MM/dd/yyyy") ?? "")</td>
+                        <td id="td_description_@movie.Id">@(movie.Description ?? "")</td>
+                        <td id="td_language_@movie.Id">@movie.Language</td>
+                        <td id="td_director_@movie.Id">@(movie.Director?.FullName ?? "")</td>
+                        <td id="td_stars_@movie.Id">@string.Join(",", movie.Stars.Select(s => s.FullName))</td>
+                        <td id="td_action_@movie.Id">
+                            <form method="post" asp-page-handler="Delete" id="form_delete_@movie.Id" style="display: inline;">
+                                @Html.AntiForgeryToken()
+                                <input type="hidden" name="id" value="@movie.Id" />
+                                @if (Request.Query.ContainsKey("directorId") && int.TryParse(Request.Query["directorId"], out int directorId))
+                                {
+                                    <input type="hidden" name="directorId" value="@directorId" />
+                                }
+                            </form>
+                            <a id="btn_delete_@movie.Id" href="#" onclick="document.getElementById('form_delete_@movie.Id').submit(); return false;" style="color: blue; text-decoration: underline; cursor: pointer;">
                                 Delete
                             </a>
                         </td>
