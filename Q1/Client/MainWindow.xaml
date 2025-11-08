@@ -29,7 +29,11 @@
                 <CheckBox x:Name="IsMaleCheckBox" Content="Is male" Margin="0,0,0,15"/>
                 
                 <TextBlock Text="Nationality" Margin="0,0,0,5"/>
-                <TextBox x:Name="NationalityTextBox" Height="30" Margin="0,0,0,20"/>
+                <ComboBox x:Name="NationalityComboBox" Height="30" Margin="0,0,0,20">
+                    <ComboBoxItem Content="Viet Nam"/>
+                    <ComboBoxItem Content="Japan"/>
+                    <ComboBoxItem Content="American"/>
+                </ComboBox>
                 
                 <Button x:Name="AddToListButton" Content="Add To List" 
                         Height="40" 

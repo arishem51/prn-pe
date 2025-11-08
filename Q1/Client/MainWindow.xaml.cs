@@ -33,7 +33,7 @@ namespace Client
                 Name = StarNameTextBox.Text,
                 Description = string.IsNullOrWhiteSpace(DescriptionTextBox.Text) ? null : DescriptionTextBox.Text,
                 Male = IsMaleCheckBox.IsChecked,
-                Nationality = string.IsNullOrWhiteSpace(NationalityTextBox.Text) ? null : NationalityTextBox.Text,
+                Nationality = NationalityComboBox.SelectedItem == null ? null : ((System.Windows.Controls.ComboBoxItem)NationalityComboBox.SelectedItem).Content?.ToString(),
                 Dob = DobDatePicker.SelectedDate
             };
 
@@ -42,7 +42,7 @@ namespace Client
             // Clear input fields
             StarNameTextBox.Clear();
             DescriptionTextBox.Clear();
-            NationalityTextBox.Clear();
+            NationalityComboBox.SelectedItem = null;
             IsMaleCheckBox.IsChecked = false;
             DobDatePicker.SelectedDate = null;
         }
