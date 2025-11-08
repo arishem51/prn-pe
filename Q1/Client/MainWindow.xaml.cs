@@ -18,6 +18,7 @@ namespace Client
         {
             InitializeComponent();
             StarListBox.ItemsSource = _stars;
+            NationalityComboBox.SelectedIndex = 0; // Set default to "Viet Nam"
         }
 
         private void AddToListButton_Click(object sender, RoutedEventArgs e)
@@ -42,7 +43,7 @@ namespace Client
             // Clear input fields
             StarNameTextBox.Clear();
             DescriptionTextBox.Clear();
-            NationalityComboBox.SelectedItem = null;
+            NationalityComboBox.SelectedIndex = 0; // Reset to default "Viet Nam"
             IsMaleCheckBox.IsChecked = false;
             DobDatePicker.SelectedDate = null;
         }
