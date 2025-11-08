@@ -436,3 +436,37 @@ FodyWeavers.xsd
 .idea/
 *.sln.iml
 
+# ASP.NET Core / Razor Pages
+# Client-side libraries restored via LibMan or npm
+**/wwwroot/lib/
+**/wwwroot/libman.json
+wwwroot/lib/
+wwwroot/libman.json
+
+# User-specific launch settings (optional - uncomment if you want to ignore)
+# Properties/launchSettings.json
+
+# NuGet generated files
+*.nuget.props
+*.nuget.targets
+*.csproj.nuget.dgspec.json
+*.csproj.nuget.g.props
+*.csproj.nuget.g.targets
+project.assets.json
+project.nuget.cache
+
+# Build artifacts
+*.dll
+*.exe
+*.pdb
+*.cache
+*.g.cs
+*.g.i.cs
+*.AssemblyInfo.cs
+*.AssemblyInfoInputs.cache
+*.assets.cache
+*.GeneratedMSBuildEditorConfig.editorconfig
+*.GlobalUsings.g.cs
+*_MarkupCompile.cache
+*_MarkupCompile.lref
+
