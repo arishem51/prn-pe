@@ -66,10 +66,26 @@ namespace Client
                         var json = System.Text.Json.JsonSerializer.Serialize(_stars);
                         byte[] data = Encoding.UTF8.GetBytes(json);
                         await stream.WriteAsync(data, 0, data.Length);
+                        
+                        // Read response from server
+                        var responseBuffer = new byte[1024];
+                        var bytesRead = await stream.ReadAsync(responseBuffer, 0, responseBuffer.Length);
+                        
+                        if (bytesRead > 0)
+                        {
+                            var response = Encoding.UTF8.GetString(responseBuffer, 0, bytesRead);
+                            
+                            if (response.Trim().Equals("true", StringComparison.OrdinalIgnoreCase))
+                            {
+                                MessageBox.Show("Sent to server success", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                            }
+                            else
+                            {
+                                MessageBox.Show($"Server response: {response}", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                            }
+                        }
                     }
                 }
-
-                MessageBox.Show($"Successfully sent {_stars.Count} star(s) to server.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch (Exception ex)
             {
